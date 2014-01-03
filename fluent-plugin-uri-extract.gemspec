@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Fluent::Plugin::UriExtract::VERSION
   spec.authors       = ["ryonext"]
   spec.email         = ["ryonext.s@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Fluentd plugin for extract uri from text.}
+  spec.summary       = %q{Fluentd plugin for extract uri from text.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
