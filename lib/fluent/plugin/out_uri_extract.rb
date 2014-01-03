@@ -1,5 +1,6 @@
 class UriExtract < Fluent::Output
   Fluent::Plugin.register_output('uri_extract', self)
+  require "uri"
 
   def configure(conf)
     super
@@ -15,9 +16,15 @@ class UriExtract < Fluent::Output
 
   def emit(tag, es, chain)
     chain.next
-    es.each {|time,record|
-      $stderr.puts "OK!"
-    }
+    es.each do |time,record|
+      text = record["text"]
+      uri = URI.extract(text, ["http", "https"])
+      tweet_id = record["id"]
+      record = {}
+      record["uri"] = uri.first
+      record["tweet_id"] = tweet_id
+      Fluent::Engine.emit("uri.#{tag}", time, record)
+    end
   end
 
 end
